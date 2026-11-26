@@ -1,0 +1,9 @@
+# .c, .h, .cpp에만 적용한다. .pgc는 EXEC SQL 문장이 깨지므로 clang-format을 돌리지 않는다.
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 100
+BreakBeforeBraces: WebKit
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+PointerAlignment: Right
+SortIncludes: false

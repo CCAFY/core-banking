@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# .pgc는 SQL이 들어간 C 소스다. GitHub에서 C로 표시하고 언어 통계에도 C로 잡히게 한다.
+*.pgc linguist-language=C

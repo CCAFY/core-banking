@@ -1,0 +1,118 @@
+/*
+ * DB 접속과 공통 도우미. 업무 로직은 여기에 넣지 않고 새 .pgc 파일을 만든다.
+ * ECPG 문법은 docs/ecpg-guide.md 참고.
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "ledger/ledger.h"
+#include "internal.h"
+
+EXEC SQL INCLUDE sqlca;
+
+static const char *env_or(const char *name, const char *fallback)
+{
+    const char *value = getenv(name);
+
+    return (value != NULL && value[0] != '\0') ? value : fallback;
+}
+
+ledger_rc ledger_connect(void)
+{
+    EXEC SQL BEGIN DECLARE SECTION;
+    char h_target[256];
+    char h_user[64];
+    char h_password[128];
+    EXEC SQL END DECLARE SECTION;
+    int written;
+
+    written = snprintf(h_target, sizeof(h_target), "tcp:postgresql://%s:%s/%s",
+                       env_or("LEDGER_DB_HOST", "localhost"), env_or("LEDGER_DB_PORT", "5432"),
+                       env_or("LEDGER_DB_NAME", "ledger"));
+    if (written < 0 || (size_t)written >= sizeof(h_target)) {
+        return LEDGER_ERR_INVALID;
+    }
+    written = snprintf(h_user, sizeof(h_user), "%s", env_or("LEDGER_DB_USER", "ledger"));
+    if (written < 0 || (size_t)written >= sizeof(h_user)) {
+        return LEDGER_ERR_INVALID;
+    }
+    written = snprintf(h_password, sizeof(h_password), "%s",
+                       env_or("LEDGER_DB_PASSWORD", "ledger"));
+    if (written < 0 || (size_t)written >= sizeof(h_password)) {
+        return LEDGER_ERR_INVALID;
+    }
+
+    EXEC SQL CONNECT TO :h_target USER :h_user USING :h_password;
+    if (sqlca.sqlcode < 0) {
+        ledger_db_log_error("ledger_connect");
+        return LEDGER_ERR_DB;
+    }
+    return LEDGER_OK;
+}
+
+void ledger_disconnect(void)
+{
+    EXEC SQL DISCONNECT CURRENT;
+}
+
+/*
+ * ECPG 함수의 기본 모양을 보여주는 예시.
+ *   - 호스트 변수는 DECLARE SECTION 안에 선언한다
+ *   - SQL 한 문장마다 sqlca.sqlcode를 확인한다
+ *   - 끝에서 직접 COMMIT 한다. 실패하면 rollback 라벨로 가서 ROLLBACK 한다
+ *   - 함수의 출구는 정상 반환과 rollback 라벨 둘뿐이다
+ */
+ledger_rc ledger_db_ping(int *out)
+{
+    EXEC SQL BEGIN DECLARE SECTION;
+    int h_one;
+    EXEC SQL END DECLARE SECTION;
+    ledger_rc rc = LEDGER_ERR_DB;
+
+    if (out == NULL) {
+        return LEDGER_ERR_INVALID;
+    }
+
+    EXEC SQL SELECT 1 INTO :h_one;
+    if (sqlca.sqlcode < 0) {
+        ledger_db_log_error("ledger_db_ping: select");
+        goto rollback;
+    }
+
+    EXEC SQL COMMIT;
+    if (sqlca.sqlcode < 0) {
+        ledger_db_log_error("ledger_db_ping: commit");
+        goto rollback;
+    }
+    *out = h_one;
+    return LEDGER_OK;
+
+rollback:
+    EXEC SQL ROLLBACK;
+    return rc;
+}
+
+bool ledger_db_sqlstate_is(const char *code)
+{
+    return memcmp(sqlca.sqlstate, code, 5) == 0;
+}
+
+void ledger_db_log_error(const char *where)
+{
+    fprintf(stderr, "[ledger] %s: sqlcode=%ld sqlstate=%.5s %s\n", where, (long)sqlca.sqlcode,
+            sqlca.sqlstate, sqlca.sqlerrm.sqlerrmc);
+}
+
+const char *ledger_rc_str(ledger_rc rc)
+{
+    switch (rc) {
+    case LEDGER_OK:
+        return "OK";
+    case LEDGER_ERR_INVALID:
+        return "ERR_INVALID";
+    case LEDGER_ERR_DB:
+        return "ERR_DB";
+    }
+    return "UNKNOWN";
+}

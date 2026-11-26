@@ -1,0 +1,11 @@
+-- 원장 스키마 (PostgreSQL 16)
+--
+-- 아직 비어 있다. 테이블 설계는 팀이 한다.
+-- 무엇을 정해야 하는지는 docs/design-questions.md의 "1. 원장 모델"을 본다.
+-- 정한 내용과 이유는 docs/adr/에 기록한다.
+--
+-- 이 파일은 세 곳에서 그대로 실행된다.
+--   1. docker compose가 DB를 처음 만들 때
+--   2. scripts/db-reset.sh
+--   3. 테스트가 시작할 때마다 (tests/support/db_fixture.cpp의 ResetSchema)
+-- 그래서 psql 전용 명령(\로 시작하는 줄)은 쓰지 않는다.

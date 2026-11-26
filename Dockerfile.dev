@@ -1,0 +1,16 @@
+# 빌드/테스트용 개발 환경. CI(.github/workflows/ci.yml)와 같은 Ubuntu 24.04 패키지를 쓴다.
+FROM ubuntu:24.04
+
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        build-essential \
+        cmake \
+        ca-certificates \
+        clang-format \
+        libecpg-dev \
+        libpq-dev \
+        libgtest-dev \
+        postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /work

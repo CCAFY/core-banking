@@ -1,0 +1,37 @@
+# db  : PostgreSQL. 처음 뜰 때 db/schema.sql을 자동으로 적용한다.
+# dev : 빌드와 테스트를 돌리는 리눅스 환경. 팀 전원이 같은 컴파일러와 ecpg를 쓰기 위한 것.
+#
+#   docker compose up -d db
+#   docker compose run --rm dev scripts/test.sh
+#
+# 스키마를 고친 뒤에는 DB를 새로 만든다:  docker compose down -v && docker compose up -d db
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ledger
+      POSTGRES_PASSWORD: ledger
+      POSTGRES_DB: ledger
+    ports:
+      - "127.0.0.1:${LEDGER_DB_HOST_PORT:-5432}:5432"
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ledger -d ledger"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      LEDGER_DB_HOST: db
+      BUILD_DIR: build-docker
+    volumes:
+      - .:/work
+    working_dir: /work

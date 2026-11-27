@@ -52,6 +52,9 @@ open -a Docker
 echo "LEDGER_DB_HOST_PORT=5433" > .env
 ```
 
+- `docker compose`가 `.env`를 자동으로 읽으므로 이후 명령은 그대로 쓰면 된다.
+- 테스트는 컨테이너 내부 네트워크(`db:5432`)로 접속하므로 호스트 포트를 바꿔도 영향이 없다.
+- `.env`는 PC마다 다르므로 커밋하지 않는다 (`.gitignore`에 들어 있다).
 
 ## 어디서부터 시작하나
 

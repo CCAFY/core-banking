@@ -33,6 +33,26 @@ docker compose up -d db                        # PostgreSQL 실행
 docker compose run --rm dev scripts/test.sh    # 빌드 + 테스트 (지금은 환경 확인용 5개)
 ```
 
+
+## 자주 막히는 곳
+
+### `Cannot connect to the Docker daemon`
+
+Docker Desktop이 꺼져 있다. 켜고 고래 아이콘이 뜰 때까지 기다린 뒤 다시 실행한다.
+
+```sh
+open -a Docker
+```
+
+### `port 5432 ... address already in use`
+
+로컬에 PostgreSQL이 이미 떠 있어서 포트가 겹친다. 프로젝트 폴더에 `.env` 파일을 만들어 호스트 포트를 바꾼다.
+
+```sh
+echo "LEDGER_DB_HOST_PORT=5433" > .env
+```
+
+
 ## 어디서부터 시작하나
 
 1. [docs/ecpg-guide.md](docs/ecpg-guide.md): Java/Spring에 익숙한 사람을 위한 C + ECPG 안내.

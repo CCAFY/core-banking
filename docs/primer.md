@@ -6,7 +6,7 @@
 ## 범례
 
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"curve": "linear", "nodeSpacing": 24, "rankSpacing": 32}}}%%
+%%{init: {"theme": "base", "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div, span { white-space: nowrap !important; word-break: keep-all !important; }", "markdownAutoWrap": false, "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"htmlLabels": true, "wrappingWidth": 1000, "curve": "linear", "nodeSpacing": 24, "rankSpacing": 32}}}%%
 flowchart LR
     classDef input  fill:#4F46E5,stroke:#4338CA,stroke-width:1.5px,color:#FFFFFF
     classDef step   fill:#EEF2FF,stroke:#6366F1,stroke-width:1.5px,color:#1E1B4B
@@ -26,7 +26,7 @@ flowchart LR
 ## 1. 큰 그림: 거래 한 건이 지나가는 길
 
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"curve": "linear", "nodeSpacing": 32, "rankSpacing": 40}}}%%
+%%{init: {"theme": "base", "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div, span { white-space: nowrap !important; word-break: keep-all !important; }", "markdownAutoWrap": false, "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"htmlLabels": true, "wrappingWidth": 1000, "curve": "linear", "nodeSpacing": 32, "rankSpacing": 40}}}%%
 flowchart TB
     classDef input  fill:#4F46E5,stroke:#4338CA,stroke-width:1.5px,color:#FFFFFF
     classDef step   fill:#EEF2FF,stroke:#6366F1,stroke-width:1.5px,color:#1E1B4B
@@ -57,7 +57,7 @@ flowchart TB
 ## 2. 복식부기: 입금 10,000원
 
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"curve": "linear", "nodeSpacing": 28, "rankSpacing": 48}}}%%
+%%{init: {"theme": "base", "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div, span { white-space: nowrap !important; word-break: keep-all !important; }", "markdownAutoWrap": false, "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"htmlLabels": true, "wrappingWidth": 1000, "curve": "linear", "nodeSpacing": 28, "rankSpacing": 48}}}%%
 flowchart LR
     classDef input  fill:#4F46E5,stroke:#4338CA,stroke-width:1.5px,color:#FFFFFF
     classDef value  fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#94A3B8
@@ -94,7 +94,7 @@ flowchart LR
 ## 3. 취소: 지우지 않고 반대로 한 줄 더
 
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"curve": "linear", "nodeSpacing": 28, "rankSpacing": 40}}}%%
+%%{init: {"theme": "base", "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div, span { white-space: nowrap !important; word-break: keep-all !important; }", "markdownAutoWrap": false, "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"htmlLabels": true, "wrappingWidth": 1000, "curve": "linear", "nodeSpacing": 28, "rankSpacing": 40}}}%%
 flowchart LR
     classDef step   fill:#EEF2FF,stroke:#6366F1,stroke-width:1.5px,color:#1E1B4B
     classDef danger fill:#FEF2F2,stroke:#EF4444,stroke-width:1.5px,stroke-dasharray:5 3,color:#7F1D1D
@@ -125,7 +125,7 @@ flowchart LR
 ## 4. 멱등성: 응답을 못 받은 쪽이 다시 보낼 때
 
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"fontSize": "14px", "actorBkg": "#FFFFFF", "actorBorder": "#6366F1", "actorTextColor": "#1E1B4B", "actorLineColor": "#CBD5E1", "signalColor": "#64748B", "signalTextColor": "#334155", "noteBkgColor": "#FFFFFF", "noteBorderColor": "#CBD5E1", "noteTextColor": "#334155", "sequenceNumberColor": "#FFFFFF"}}}%%
+%%{init: {"theme": "base", "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div, span { white-space: nowrap !important; word-break: keep-all !important; }", "markdownAutoWrap": false, "themeVariables": {"fontSize": "14px", "actorBkg": "#FFFFFF", "actorBorder": "#6366F1", "actorTextColor": "#1E1B4B", "actorLineColor": "#CBD5E1", "signalColor": "#64748B", "signalTextColor": "#334155", "noteBkgColor": "#FFFFFF", "noteBorderColor": "#CBD5E1", "noteTextColor": "#334155", "sequenceNumberColor": "#FFFFFF"}, "sequence": {"wrap": false}}}%%
 sequenceDiagram
     autonumber
     participant C as 클라이언트
@@ -159,7 +159,7 @@ sequenceDiagram
 ## 5. 영업일: 시스템 날짜와 다를 수 있다
 
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"curve": "linear", "nodeSpacing": 28, "rankSpacing": 28}}}%%
+%%{init: {"theme": "base", "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div, span { white-space: nowrap !important; word-break: keep-all !important; }", "markdownAutoWrap": false, "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"htmlLabels": true, "wrappingWidth": 1000, "curve": "linear", "nodeSpacing": 28, "rankSpacing": 28}}}%%
 flowchart LR
     classDef input  fill:#4F46E5,stroke:#4338CA,stroke-width:1.5px,color:#FFFFFF
     classDef step   fill:#EEF2FF,stroke:#6366F1,stroke-width:1.5px,color:#1E1B4B
@@ -184,7 +184,7 @@ flowchart LR
 ## 6. 대사: 두 기록을 맞춰 본다
 
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"curve": "linear", "nodeSpacing": 20, "rankSpacing": 80}}}%%
+%%{init: {"theme": "base", "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div, span { white-space: nowrap !important; word-break: keep-all !important; }", "markdownAutoWrap": false, "themeVariables": {"fontSize": "14px", "lineColor": "#94A3B8", "textColor": "#334155", "edgeLabelBackground": "#FFFFFF", "clusterBkg": "#F8FAFC", "clusterBorder": "#E2E8F0", "titleColor": "#475569"}, "flowchart": {"htmlLabels": true, "wrappingWidth": 1000, "curve": "linear", "nodeSpacing": 20, "rankSpacing": 80}}}%%
 flowchart LR
     classDef value  fill:#FFFFFF,stroke:#CBD5E1,stroke-width:1.5px,color:#334155
     classDef danger fill:#FEF2F2,stroke:#EF4444,stroke-width:1.5px,color:#7F1D1D

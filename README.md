@@ -1,5 +1,11 @@
 # ledger
 
+[![ci](https://github.com/CCAFY/core-banking/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/CCAFY/core-banking/actions/workflows/ci.yml)
+![C11](https://img.shields.io/badge/C-11-A8B9CC?logo=c&logoColor=white)
+![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
+![ECPG](https://img.shields.io/badge/SQL-ECPG-336791)
+![GoogleTest](https://img.shields.io/badge/test-GoogleTest-4285F4?logo=google&logoColor=white)
+
 은행 계정계의 핵심인 원장(ledger)을 C로 직접 만들어 보는 학습 프로젝트.
 미들웨어 없이 원장 규칙 자체(복식부기, 동시성, 멱등성, 대사)를 정확하게 구현하는 데 집중한다.
 
